@@ -91,6 +91,8 @@ public class RoomAdventure { // Main class containing game logic
     public static void main(String[] args) { // Entry point of the program
         setupGame(); // Initialize rooms, items, and starting room
 
+        Scanner s = new Scanner(System.in); // Create Scanner to read input
+
         while (true) { // Game loop, runs until program is terminated
             System.out.print(currentRoom.toString()); // Display current room description
             System.out.print("Inventory: "); // Prompt for inventory display
@@ -101,7 +103,6 @@ public class RoomAdventure { // Main class containing game logic
 
             System.out.println("\nWhat would you like to do? "); // Prompt user for next action
 
-            Scanner s = new Scanner(System.in); // Create Scanner to read input
             String input = s.nextLine(); // Read entire line of input
             String[] words = input.split(" "); // Split input into words
 
