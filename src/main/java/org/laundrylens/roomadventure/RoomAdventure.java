@@ -1,4 +1,6 @@
-import java.util.Scanner; // Import Scanner for reading user input
+package org.laundrylens.roomadventure;
+
+import org.laundrylens.roomadventure.room.Room;
 
 public class RoomAdventure { // Main class containing game logic
 
@@ -6,6 +8,7 @@ public class RoomAdventure { // Main class containing game logic
     private static Room currentRoom; // The room the player is currently in
     private static String[] inventory = {null, null, null, null, null}; // Player inventory slots
     private static String status; // Message to display after each action
+    
 
     // constants
     final private static String DEFAULT_STATUS =
@@ -91,7 +94,7 @@ public class RoomAdventure { // Main class containing game logic
     public static void main(String[] args) { // Entry point of the program
         setupGame(); // Initialize rooms, items, and starting room
 
-        Scanner s = new Scanner(System.in); // Create Scanner to read input
+        Scanner s = new Scanner(System.in);
 
         while (true) { // Game loop, runs until program is terminated
             System.out.print(currentRoom.toString()); // Display current room description
