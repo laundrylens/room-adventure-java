@@ -1,7 +1,7 @@
+import java.util.Scanner;
+
 import room.HiddenRoom;
 import room.Room;
-
-import java.util.Scanner;
 
 public class RoomAdventure { // Main class containing game logic
 
@@ -58,7 +58,7 @@ public class RoomAdventure { // Main class containing game logic
         byte i = -1; // index of item, if found
         boolean found = false;
         for (byte j = 0; j < inventory.length; j++) {
-            if (inventory[j].equals(noun)) {
+            if (inventory[j] != null && inventory[j].equals(noun)) {
                 i = j;
                 found = true;
                 break;
@@ -69,13 +69,16 @@ public class RoomAdventure { // Main class containing game logic
             switch (noun) {
                 case "key": // use Key
                     // reveal secret room 1
-                    // HACK: workaroud. loop through the exits of the room until we find a
-                    // hidden room, then show it.
                     for (Room exitDestination : currentRoom.getExitDestinations()) {
-                        if (exitDestination.getClass() == HiddenRoom.class) {
+                        if (exitDestination.getName() == "Hidden Room 1") {
+                            status = "Something changed!";
+                            inventory[i] = null;
                             ((HiddenRoom) exitDestination).setVisible(true);
+                        } else {
+                            status = "Nothing happened...";
                         }
                     }
+                    // remove the item from player's inventory after use
                     break;
                 case "trophy": // use Trophy, requires a room with a table
                     boolean foundDesk = false;
@@ -85,10 +88,17 @@ public class RoomAdventure { // Main class containing game logic
                         }
                     }
                     if (foundDesk) {
+                        // remove the item from player's inventory after use
                         inventory[i] = null;
                         status = "Something changed!";
                         // create secret room 2
-
+                        // HACK: workaroud. loop through the exits of the room until we find a
+                        // hidden room, then show it.
+                        for (Room exitDestination : currentRoom.getExitDestinations()) {
+                            if (exitDestination.getClass() == HiddenRoom.class) {
+                                ((HiddenRoom) exitDestination).setVisible(true);
+                            }
+                        }
                     }
                     break;
                 case "pokeball": // use Pokeball
@@ -134,11 +144,38 @@ public class RoomAdventure { // Main class containing game logic
         secretRoom1.setExitDirections(secretRoom1ExitDirections);
         secretRoom1.setExitDestinations(secretRoom1ExitDestinations);
 
+        // Items for secret room #1
+        String[] secretRoom1Items = { "mirror", "mistletoe" };
+        String[] secretRoom1ItemDescriptions = {
+                "A mirror. You look at yourself and wonder how you got here.",
+                "A mistletoe is hanging from the ceiling. You stand under it and hope for a kiss; you remain sad and lonely.",
+        };
+
+        String[] secretRoom1Grabbables = {};
+
+        secretRoom1.setItems(secretRoom1Items);
+        secretRoom1.setItemDescriptions(secretRoom1ItemDescriptions);
+        secretRoom1.setGrabbables(secretRoom1Grabbables);
+
         // Exits for secret room #2
         String[] secretRoom2ExitDirections = { "north" };
         Room[] secretRoom2ExitDestinations = { room2 };
+
         secretRoom2.setExitDirections(secretRoom2ExitDirections);
         secretRoom2.setExitDestinations(secretRoom2ExitDestinations);
+
+        // Items for secret room #2
+        String[] secretRoom2Items = { "kendama", "book" };
+        String[] secretRoom2ItemDescriptions = {
+                "A traditional Japanese kendama toy, made from wood. You pick it up and try to perform a trick on it, but you fail. Better luck next time, perhaps.",
+                "A book. You pick it up and open it, eager to gain knowledge; you then remember you don't know how to read."
+        };
+
+        String[] secretRoom2Grabbables = {};
+
+        secretRoom2.setItems(secretRoom2Items);
+        secretRoom2.setItemDescriptions(secretRoom2ItemDescriptions);
+        secretRoom2.setGrabbables(secretRoom2Grabbables);
 
         String[] room1ExitDirections = { "east", "south" }; // Room 1 exits
         Room[] room1ExitDestinations = { room2, room3 }; // Destination rooms for Room 1
@@ -251,5 +288,4 @@ public class RoomAdventure { // Main class containing game logic
             }
         }
     }
-
 }

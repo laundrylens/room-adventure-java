@@ -76,4 +76,8 @@ public class Room { // Represents a game room
         }
         return result + "\n"; // Return full description
     }
+
+    public String getName() {
+        return name;
+    }
 }
