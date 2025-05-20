@@ -1,6 +1,5 @@
 package org.laundrylens.roomadventure;
 
-import com.sun.source.doctree.SerialFieldTree;
 import org.laundrylens.roomadventure.room.Room;
 
 public class RoomAdventure { // Main class containing game logic
