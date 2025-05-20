@@ -55,11 +55,10 @@ public class RoomAdventure { // Main class containing game logic
 
     public static void handleUse(String noun) {
         status = "You don't have that item in your inventory.";
-        String[] items = currentRoom.getItems();
         byte i = -1; // index of item, if found
         boolean found = false;
-        for (byte j = 0; j < items.length; j++) {
-            if (items[j] == noun) {
+        for (byte j = 0; j < inventory.length; j++) {
+            if (inventory[j].equals(noun)) {
                 i = j;
                 found = true;
                 break;
@@ -68,7 +67,7 @@ public class RoomAdventure { // Main class containing game logic
 
         if (found) {
             switch (noun) {
-                case "Key": // use Key
+                case "key": // use Key
                     // reveal secret room 1
                     // HACK: workaroud. loop through the exits of the room until we find a
                     // hidden room, then show it.
@@ -78,9 +77,9 @@ public class RoomAdventure { // Main class containing game logic
                         }
                     }
                     break;
-                case "Trophy": // use Trophy, requires a room with a table
+                case "trophy": // use Trophy, requires a room with a table
                     boolean foundDesk = false;
-                    for (String item : items) { // Check that theres a table in the room
+                    for (String item : currentRoom.getItems()) { // Check that theres a table in the room
                         if (item.equals("Table")) {
                             foundDesk = true;
                         }
@@ -92,10 +91,10 @@ public class RoomAdventure { // Main class containing game logic
 
                     }
                     break;
-                case "Pokeball": // use Pokeball
+                case "pokeball": // use Pokeball
                     boolean foundMirror = false;
-                    for (String item : items) { //
-                        if (item.equals("Mirror")) {
+                    for (String item : currentRoom.getItems()) { //
+                        if (item.equals("mirror")) {
                             foundMirror = true;
                         }
                     }
@@ -109,7 +108,7 @@ public class RoomAdventure { // Main class containing game logic
                     }
 
                     break;
-                case "Knife":
+                case "knife":
                     status = "You committed Seppuku!";
                     // win
                     break;

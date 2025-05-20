@@ -64,12 +64,14 @@ public class Room { // Represents a game room
         // result += direction + " "; // Append each direction
         // }
         for (int i = 0; i < exitDestinations.length; i++) {
-            if (exitDestinations[i] instanceof HiddenRoom) {
+            if (exitDestinations[i].getClass() == HiddenRoom.class) {
                 HiddenRoom hr = (HiddenRoom) exitDestinations[i];
                 if (hr.isVisible())
                     result += exitDirections[i] + "* ";
                 else
                     continue;
+            } else {
+                result += exitDirections[i] + " ";
             }
         }
         return result + "\n"; // Return full description
