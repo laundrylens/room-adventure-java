@@ -29,4 +29,9 @@ public class Item {
         return grabbable;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s:\n\t%s\n", name, description);
+    }
+
 }
