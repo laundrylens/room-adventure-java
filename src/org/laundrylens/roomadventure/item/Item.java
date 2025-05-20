@@ -31,7 +31,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("%s:\n\t%s\n", name, description);
+        return String.format("- %s:\n\t%s\n", name, description);
     }
 
 }
