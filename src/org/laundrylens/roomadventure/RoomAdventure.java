@@ -184,6 +184,7 @@ public class RoomAdventure { // Main class containing game logic
         room3.setExitDestinations(room3ExitDestinations); // Set exit destinations
         room3.setItems(room3Items); // Set visible items
         room3.setItemDescriptions(room3ItemDescriptions); // Set item descriptions
+        room3.setGrabbables(room3Grabbables);
 
         String[] room4ExitDirections = { "north", "west" };
         Room[] room4ExitDestinations = { room2, room3 };
@@ -198,6 +199,7 @@ public class RoomAdventure { // Main class containing game logic
         room4.setExitDestinations(room4ExitDestinations); // Set exit destinations
         room4.setItems(room4Items); // Set visible items
         room4.setItemDescriptions(room4ItemDescriptions); // Set item descriptions
+        room4.setGrabbables(room4Grabbables);
 
         currentRoom = room1; // Start game in Room 1
     }
@@ -250,4 +252,5 @@ public class RoomAdventure { // Main class containing game logic
             System.out.println(status); // Print the status message
         }
     }
+
 }
