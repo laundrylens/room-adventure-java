@@ -219,6 +219,9 @@ public class RoomAdventure { // Main class containing game logic
                 case "take": // If verb is 'take'
                     handleTake(noun); // Pick up an item
                     break;
+                case "use":
+                    handleUse(noun);
+                    break;
                 default: // If verb is unrecognized
                     status = DEFAULT_STATUS; // Set status to error message
             }
