@@ -1,20 +1,16 @@
-package org.laundrylens.roomadventure;
+import room.Room;
 
-import org.laundrylens.roomadventure.room.Room;
+import java.util.Scanner;
 
 public class RoomAdventure { // Main class containing game logic
 
     // class variables
     private static Room currentRoom; // The room the player is currently in
-    private static String[] inventory = {null, null, null, null, null}; // Player inventory slots
+    private static String[] inventory = { null, null, null, null, null }; // Player inventory slots
     private static String status; // Message to display after each action
-    
 
     // constants
-    final private static String DEFAULT_STATUS =
-        "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'."; // Default error message
-
-
+    final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'."; // Default
 
     private static void handleGo(String noun) { // Handles moving between rooms
         String[] exitDirections = currentRoom.getExitDirections(); // Get available directions
@@ -24,6 +20,7 @@ public class RoomAdventure { // Main class containing game logic
             if (noun.equals(exitDirections[i])) { // If user direction matches
                 currentRoom = exitDestinations[i]; // Change current room
                 status = "Changed Room"; // Update status
+
             }
         }
     }
@@ -60,8 +57,8 @@ public class RoomAdventure { // Main class containing game logic
         String[] items = currentRoom.getItems();
         byte i = -1; // index of item, if found
         boolean found = false;
-        for (String item : inventory){ // checks if you have the item in your inventory
-            if (item.equals(noun)){
+        for (String item : inventory) { // checks if you have the item in your inventory
+            if (item.equals(noun)) {
                 i++;
                 found = true;
                 break;
@@ -71,41 +68,41 @@ public class RoomAdventure { // Main class containing game logic
         if (found) {
             switch (noun) {
                 case "Key": // use Key
-                    //create secret room 1
+                    // create secret room 1
                     break;
                 case "Trophy": // use Trophy, requires a room with a table
                     boolean foundDesk = false;
-                    for (String item : items){ // Check that theres a table in the room
-                        if (item.equals("Table")){
+                    for (String item : items) { // Check that theres a table in the room
+                        if (item.equals("Table")) {
                             foundDesk = true;
                         }
                     }
-                    if (foundDesk){
+                    if (foundDesk) {
                         inventory[i] = null;
                         status = "Something changed!";
-                        //create secret room 2
+                        // create secret room 2
                     }
                     break;
-                case "Pokeball":  // use Pokeball
+                case "Pokeball": // use Pokeball
                     boolean foundMirror = false;
-                    for (String item : items) { // 
-                        if (item.equals("Mirror")){
+                    for (String item : items) { //
+                        if (item.equals("Mirror")) {
                             foundMirror = true;
                         }
                     }
                     if (foundMirror) { // mirror, secret ending
                         status = "You threw the pokeball at the mirror and caught yourself!";
                         inventory[i] = null;
-                        //secret ending
-                    } else {  // no mirror, add pokeball to room grabbables
+                        // secret ending
+                    } else { // no mirror, add pokeball to room grabbables
                         inventory[i] = null;
                         status = "You threw the pokeball at nothing!";
                     }
-                    
+
                     break;
                 case "Knife":
                     status = "You committed Seppuku!";
-                    //win
+                    // win
                     break;
                 default:
                     status = "You can't use that item. here...";
@@ -120,58 +117,58 @@ public class RoomAdventure { // Main class containing game logic
         Room room3 = new Room("Room 3");
         Room room4 = new Room("Room 4");
 
-        String[] room1ExitDirections = {"east", "south"}; // Room 1 exits
-        Room[] room1ExitDestinations = {room2, room3}; // Destination rooms for Room 1
-        String[] room1Items = {"chair", "table"}; // Items in Room 1
+        String[] room1ExitDirections = { "east", "south" }; // Room 1 exits
+        Room[] room1ExitDestinations = { room2, room3 }; // Destination rooms for Room 1
+        String[] room1Items = { "chair", "table" }; // Items in Room 1
         String[] room1ItemDescriptions = { // Descriptions for Room 1 items
-            "It is a chair",
-            "It's a desk, there is a key on it."
+                "It is a chair",
+                "It's a desk, there is a key on it."
         };
-        String[] room1Grabbables = {"key"}; // Items you can take in Room 1
-        
+        String[] room1Grabbables = { "key" }; // Items you can take in Room 1
+
         room1.setExitDirections(room1ExitDirections); // Set exits
         room1.setExitDestinations(room1ExitDestinations); // Set exit destinations
         room1.setItems(room1Items); // Set visible items
         room1.setItemDescriptions(room1ItemDescriptions); // Set item descriptions
         room1.setGrabbables(room1Grabbables); // Set grabbable items
 
-        String[] room2ExitDirections = {"west", "south"}; // Room 2 exits
-        Room[] room2ExitDestinations = {room1, room4}; // Destination rooms for Room 2
-        String[] room2Items = {"lamp", "bed", "table"};
+        String[] room2ExitDirections = { "west", "south" }; // Room 2 exits
+        Room[] room2ExitDestinations = { room1, room4 }; // Destination rooms for Room 2
+        String[] room2Items = { "lamp", "bed", "table" };
         String[] room2ItemDescriptions = {
-            "Doesn't that look a little flat?",
-            "Looks comfy. No time to rest.",
-            "If only there was something I could place on top."
+                "Doesn't that look a little flat?",
+                "Looks comfy. No time to rest.",
+                "If only there was something I could place on top."
         };
-    
+
         room2.setExitDirections(room2ExitDirections); // Set exits
         room2.setExitDestinations(room2ExitDestinations); // Set exit destinations
         room2.setItems(room2Items); // Set visible items
         room2.setItemDescriptions(room2ItemDescriptions); // Set item descriptions
 
-        String[] room3ExitDirections = {"north", "east"};
-        Room[] room3ExitDestinations = {room1, room4};
-        String[] room3Items = {"pizza-slice", "frog", "key"};
+        String[] room3ExitDirections = { "north", "east" };
+        Room[] room3ExitDestinations = { room1, room4 };
+        String[] room3Items = { "pizza-slice", "frog", "key" };
         String[] room3ItemDescriptions = {
-            "Rotten",
-            "Noisy",
-            "This looks like it will come in handy"
-        }
-        String[] room3Grabbables = {"key"};
+                "Rotten",
+                "Noisy",
+                "This looks like it will come in handy"
+        };
+        String[] room3Grabbables = { "key" };
 
         room3.setExitDirections(room3ExitDirections); // Set exits
         room3.setExitDestinations(room3ExitDestinations); // Set exit destinations
         room3.setItems(room3Items); // Set visible items
         room3.setItemDescriptions(room3ItemDescriptions); // Set item descriptions
 
-        String[] room4ExitDirections = {"north", "west"};
-        Room[] room4ExitDestinations = {room2, room3};
-        String[] room4Items = {"hand", "pokeball"};
+        String[] room4ExitDirections = { "north", "west" };
+        Room[] room4ExitDestinations = { room2, room3 };
+        String[] room4Items = { "hand", "pokeball" };
         String[] room4ItemDescriptions = {
-            "Yes",
-            "Is there something I can catch with this?"
-            }
-        String[] room4Grabbables = {"pokeball"};
+                "Yes",
+                "Is there something I can catch with this?"
+        };
+        String[] room4Grabbables = { "pokeball" };
 
         room4.setExitDirections(room4ExitDirections); // Set exits
         room4.setExitDestinations(room4ExitDestinations); // Set exit destinations
@@ -180,7 +177,7 @@ public class RoomAdventure { // Main class containing game logic
 
         currentRoom = room1; // Start game in Room 1
     }
-    
+
     @SuppressWarnings("java:S2189")
     public static void main(String[] args) { // Entry point of the program
         setupGame(); // Initialize rooms, items, and starting room
@@ -229,4 +226,3 @@ public class RoomAdventure { // Main class containing game logic
         }
     }
 }
-

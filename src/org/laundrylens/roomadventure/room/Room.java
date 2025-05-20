@@ -1,4 +1,4 @@
-package org.laundrylens.roomadventure.room;
+package room;
 
 public class Room { // Represents a game room
     private String name; // Room name
