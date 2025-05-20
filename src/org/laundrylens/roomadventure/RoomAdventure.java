@@ -1,3 +1,4 @@
+import room.HiddenRoom;
 import room.Room;
 
 import java.util.Scanner;
@@ -68,7 +69,14 @@ public class RoomAdventure { // Main class containing game logic
         if (found) {
             switch (noun) {
                 case "Key": // use Key
-                    // create secret room 1
+                    // reveal secret room 1
+                    // HACK: workaroud. loop through the exits of the room until we find a
+                    // hidden room, then show it.
+                    for (Room exitDestination : currentRoom.getExitDestinations()) {
+                        if (exitDestination.getClass() == HiddenRoom.class) {
+                            ((HiddenRoom) exitDestination).setVisible(true);
+                        }
+                    }
                     break;
                 case "Trophy": // use Trophy, requires a room with a table
                     boolean foundDesk = false;
@@ -81,6 +89,7 @@ public class RoomAdventure { // Main class containing game logic
                         inventory[i] = null;
                         status = "Something changed!";
                         // create secret room 2
+
                     }
                     break;
                 case "Pokeball": // use Pokeball
@@ -117,6 +126,21 @@ public class RoomAdventure { // Main class containing game logic
         Room room3 = new Room("Room 3");
         Room room4 = new Room("Room 4");
 
+        HiddenRoom secretRoom1 = new HiddenRoom("Hidden Room 1");
+        HiddenRoom secretRoom2 = new HiddenRoom("Hidden Room 2");
+
+        // Exits for secret room #1
+        String[] secretRoom1ExitDirections = { "north" };
+        Room[] secretRoom1ExitDestinations = { room3 };
+        secretRoom1.setExitDirections(secretRoom1ExitDirections);
+        secretRoom1.setExitDestinations(secretRoom1ExitDestinations);
+
+        // Exits for secret room #2
+        String[] secretRoom2ExitDirections = { "north" };
+        Room[] secretRoom2ExitDestinations = { room2 };
+        secretRoom2.setExitDirections(secretRoom2ExitDirections);
+        secretRoom2.setExitDestinations(secretRoom2ExitDestinations);
+
         String[] room1ExitDirections = { "east", "south" }; // Room 1 exits
         Room[] room1ExitDestinations = { room2, room3 }; // Destination rooms for Room 1
         String[] room1Items = { "chair", "table" }; // Items in Room 1
@@ -146,8 +170,8 @@ public class RoomAdventure { // Main class containing game logic
         room2.setItems(room2Items); // Set visible items
         room2.setItemDescriptions(room2ItemDescriptions); // Set item descriptions
 
-        String[] room3ExitDirections = { "north", "east" };
-        Room[] room3ExitDestinations = { room1, room4 };
+        String[] room3ExitDirections = { "north", "east", "south" };
+        Room[] room3ExitDestinations = { room1, room4, secretRoom1 };
         String[] room3Items = { "pizza-slice", "frog", "key" };
         String[] room3ItemDescriptions = {
                 "Rotten",
@@ -180,6 +204,7 @@ public class RoomAdventure { // Main class containing game logic
 
     @SuppressWarnings("java:S2189")
     public static void main(String[] args) { // Entry point of the program
+
         setupGame(); // Initialize rooms, items, and starting room
 
         Scanner s = new Scanner(System.in);

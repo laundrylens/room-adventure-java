@@ -60,8 +60,17 @@ public class Room { // Represents a game room
             result += item + " "; // Append each item
         }
         result += "\nExits: "; // List exits
-        for (String direction : exitDirections) { // Loop exits
-            result += direction + " "; // Append each direction
+        // for (String direction : exitDirections) { // Loop exits
+        // result += direction + " "; // Append each direction
+        // }
+        for (int i = 0; i < exitDestinations.length; i++) {
+            if (exitDestinations[i] instanceof HiddenRoom) {
+                HiddenRoom hr = (HiddenRoom) exitDestinations[i];
+                if (hr.isVisible())
+                    result += exitDirections[i] + "* ";
+                else
+                    continue;
+            }
         }
         return result + "\n"; // Return full description
     }
