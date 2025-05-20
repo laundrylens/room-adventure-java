@@ -209,47 +209,47 @@ public class RoomAdventure { // Main class containing game logic
 
         setupGame(); // Initialize rooms, items, and starting room
 
-        Scanner s = new Scanner(System.in);
+        try (Scanner s = new Scanner(System.in)) {
+            while (true) { // Game loop, runs until program is terminated
+                System.out.print(currentRoom.toString()); // Display current room description
+                System.out.print("Inventory: "); // Prompt for inventory display
 
-        while (true) { // Game loop, runs until program is terminated
-            System.out.print(currentRoom.toString()); // Display current room description
-            System.out.print("Inventory: "); // Prompt for inventory display
+                for (int i = 0; i < inventory.length; i++) { // Loop through inventory slots
+                    System.out.print(inventory[i] + " "); // Print each inventory item
+                }
 
-            for (int i = 0; i < inventory.length; i++) { // Loop through inventory slots
-                System.out.print(inventory[i] + " "); // Print each inventory item
-            }
+                System.out.println("\nWhat would you like to do? "); // Prompt user for next action
 
-            System.out.println("\nWhat would you like to do? "); // Prompt user for next action
+                String input = s.nextLine(); // Read entire line of input
+                String[] words = input.split(" "); // Split input into words
 
-            String input = s.nextLine(); // Read entire line of input
-            String[] words = input.split(" "); // Split input into words
-
-            if (words.length != 2) { // Check for proper two-word command
-                status = DEFAULT_STATUS; // Set status to error message
-                continue; // Skip to next loop iteration
-            }
-
-            String verb = words[0]; // First word is the action verb
-            String noun = words[1]; // Second word is the target noun
-
-            switch (verb) { // Decide which action to take
-                case "go": // If verb is 'go'
-                    handleGo(noun); // Move to another room
-                    break;
-                case "look": // If verb is 'look'
-                    handleLook(noun); // Describe an item
-                    break;
-                case "take": // If verb is 'take'
-                    handleTake(noun); // Pick up an item
-                    break;
-                case "use":
-                    handleUse(noun);
-                    break;
-                default: // If verb is unrecognized
+                if (words.length != 2) { // Check for proper two-word command
                     status = DEFAULT_STATUS; // Set status to error message
-            }
+                    continue; // Skip to next loop iteration
+                }
 
-            System.out.println(status); // Print the status message
+                String verb = words[0]; // First word is the action verb
+                String noun = words[1]; // Second word is the target noun
+
+                switch (verb) { // Decide which action to take
+                    case "go": // If verb is 'go'
+                        handleGo(noun); // Move to another room
+                        break;
+                    case "look": // If verb is 'look'
+                        handleLook(noun); // Describe an item
+                        break;
+                    case "take": // If verb is 'take'
+                        handleTake(noun); // Pick up an item
+                        break;
+                    case "use":
+                        handleUse(noun);
+                        break;
+                    default: // If verb is unrecognized
+                        status = DEFAULT_STATUS; // Set status to error message
+                }
+
+                System.out.println(status); // Print the status message
+            }
         }
     }
 
