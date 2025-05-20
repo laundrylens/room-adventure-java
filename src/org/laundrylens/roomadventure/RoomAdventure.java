@@ -58,9 +58,9 @@ public class RoomAdventure { // Main class containing game logic
         String[] items = currentRoom.getItems();
         byte i = -1; // index of item, if found
         boolean found = false;
-        for (String item : inventory) { // checks if you have the item in your inventory
-            if (item.equals(noun)) {
-                i++;
+        for (byte j = 0; j < items.length; j++) {
+            if (items[j] == noun) {
+                i = j;
                 found = true;
                 break;
             }
