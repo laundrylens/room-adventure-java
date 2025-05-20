@@ -1,5 +1,6 @@
 package org.laundrylens.roomadventure;
 
+import com.sun.source.doctree.SerialFieldTree;
 import org.laundrylens.roomadventure.room.Room;
 
 public class RoomAdventure { // Main class containing game logic
@@ -51,6 +52,65 @@ public class RoomAdventure { // Main class containing game logic
                         break; // Exit inventory loop
                     }
                 }
+            }
+        }
+    }
+
+    public static void handleUse(String noun) {
+        status = "You don't have that item in your inventory.";
+        String[] items = currentRoom.getItems();
+        byte i = -1; // index of item, if found
+        boolean found = false;
+        for (String item : inventory){ // checks if you have the item in your inventory
+            if (item.equals(noun)){
+                i++;
+                found = true;
+                break;
+            }
+        }
+
+        if (found) {
+            switch (noun) {
+                case "Key": // use Key
+                    //create secret room 1
+                    break;
+                case "Trophy": // use Trophy, requires a room with a table
+                    boolean foundDesk = false;
+                    for (String item : items){ // Check that theres a table in the room
+                        if (item.equals("Table")){
+                            foundDesk = true;
+                        }
+                    }
+                    if (foundDesk){
+                        inventory[i] = null;
+                        status = "Something changed!";
+                        //create secret room 2
+                    }
+                    break;
+                case "Pokeball":  // use Pokeball
+                    boolean foundMirror = false;
+                    for (String item : items) { // 
+                        if (item.equals("Mirror")){
+                            foundMirror = true;
+                        }
+                    }
+                    if (foundMirror) { // mirror, secret ending
+                        status = "You threw the pokeball at the mirror and caught yourself!";
+                        inventory[i] = null;
+                        //secret ending
+                    } else {  // no mirror, add pokeball to room grabbables
+                        inventory[i] = null;
+                        status = "You threw the pokeball at nothing!";
+                    }
+                    
+                    break;
+                case "Knife":
+                    status = "You committed Seppuku!";
+                    //win
+                    break;
+                default:
+                    status = "You can't use that item. here...";
+                    break;
             }
         }
     }
