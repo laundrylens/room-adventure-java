@@ -7,7 +7,7 @@ public class RoomAdventure { // Main class containing game logic
 
     // class variables
     private static Room currentRoom; // The room the player is currently in
-    private static String[] inventory = { null, null, null, null, null }; // Player inventory slots
+    private static Item[] inventory = { null, null, null, null, null }; // Player inventory slots
     private static String status; // Message to display after each action
 
     // constants
@@ -58,7 +58,7 @@ public class RoomAdventure { // Main class containing game logic
         byte i = -1; // index of item, if found
         boolean found = false;
         for (byte j = 0; j < inventory.length; j++) {
-            if (inventory[j] != null && inventory[j].equals(noun)) {
+            if (inventory[j] != null && inventory[j].getName().equals(noun)) {
                 i = j;
                 found = true;
                 break;
@@ -190,63 +190,35 @@ public class RoomAdventure { // Main class containing game logic
 
         String[] room1ExitDirections = { "east", "south" }; // Room 1 exits
         Room[] room1ExitDestinations = { room2, room3 }; // Destination rooms for Room 1
-        String[] room1Items = { "chair", "table" }; // Items in Room 1
-        String[] room1ItemDescriptions = { // Descriptions for Room 1 items
-                "It is a chair",
-                "It's a desk, there is a key on it."
-        };
-        String[] room1Grabbables = { "key" }; // Items you can take in Room 1
+        Item[] room1Items = { chair, table }; // Items in Room 1
 
         room1.setExitDirections(room1ExitDirections); // Set exits
         room1.setExitDestinations(room1ExitDestinations); // Set exit destinations
         room1.setItems(room1Items); // Set visible items
-        room1.setItemDescriptions(room1ItemDescriptions); // Set item descriptions
-        room1.setGrabbables(room1Grabbables); // Set grabbable items
 
         String[] room2ExitDirections = { "west", "south" }; // Room 2 exits
         Room[] room2ExitDestinations = { room1, room4 }; // Destination rooms for Room 2
-        String[] room2Items = { "lamp", "bed", "table" };
-        String[] room2ItemDescriptions = {
-                "Doesn't that look a little flat?",
-                "Looks comfy. No time to rest.",
-                "If only there was something I could place on top."
-        };
+        Item[] room2Items = { lamp, bed, table };
 
         room2.setExitDirections(room2ExitDirections); // Set exits
         room2.setExitDestinations(room2ExitDestinations); // Set exit destinations
         room2.setItems(room2Items); // Set visible items
-        room2.setItemDescriptions(room2ItemDescriptions); // Set item descriptions
 
         String[] room3ExitDirections = { "north", "east", "south" };
         Room[] room3ExitDestinations = { room1, room4, secretRoom1 };
-        String[] room3Items = { "pizza-slice", "frog", "key" };
-        String[] room3ItemDescriptions = {
-                "Rotten",
-                "Noisy",
-                "This looks like it will come in handy"
-        };
-        String[] room3Grabbables = { "key" };
+        Item[] room3Items = { pizza, frog, key };
 
         room3.setExitDirections(room3ExitDirections); // Set exits
         room3.setExitDestinations(room3ExitDestinations); // Set exit destinations
         room3.setItems(room3Items); // Set visible items
-        room3.setItemDescriptions(room3ItemDescriptions); // Set item descriptions
-        room3.setGrabbables(room3Grabbables);
 
         String[] room4ExitDirections = { "north", "west" };
         Room[] room4ExitDestinations = { room2, room3 };
-        String[] room4Items = { "hand", "pokeball" };
-        String[] room4ItemDescriptions = {
-                "Yes",
-                "Is there something I can catch with this?"
-        };
-        String[] room4Grabbables = { "pokeball" };
+        Item[] room4Items = { hand, pokeball };
 
         room4.setExitDirections(room4ExitDirections); // Set exits
         room4.setExitDestinations(room4ExitDestinations); // Set exit destinations
         room4.setItems(room4Items); // Set visible items
-        room4.setItemDescriptions(room4ItemDescriptions); // Set item descriptions
-        room4.setGrabbables(room4Grabbables);
 
         currentRoom = room1; // Start game in Room 1
     }

@@ -1,12 +1,13 @@
 package room;
+import item.Item;
 
 public class Room { // Represents a game room
     private String name; // Room name
     private String[] exitDirections; // Directions you can go
     private Room[] exitDestinations; // Rooms reached by each direction
-    private String[] items; // Items visible in the room
-    private String[] itemDescriptions; // Descriptions for those items
-    private String[] grabbables; // Items you can take
+    private Item[] items; // Items visible in the room
+    // private String[] itemDescriptions; // Descriptions for those items
+    // private String[] grabbables; // Items you can take
 
     public Room(String name) { // Constructor
         this.name = name; // Set the room's name
@@ -28,36 +29,36 @@ public class Room { // Represents a game room
         return exitDestinations;
     }
 
-    public void setItems(String[] items) { // Setter for items
+    public void setItems(Item[] items) { // Setter for items
         this.items = items;
     }
 
-    public String[] getItems() { // Getter for items
+    public Item[] getItems() { // Getter for items
         return items;
     }
 
-    public void setItemDescriptions(String[] itemDescriptions) { // Setter for descriptions
-        this.itemDescriptions = itemDescriptions;
-    }
+    // public void setItemDescriptions(String[] itemDescriptions) { // Setter for descriptions
+    //     this.itemDescriptions = itemDescriptions;
+    // }
 
-    public String[] getItemDescriptions() { // Getter for descriptions
-        return itemDescriptions;
-    }
+    // public String[] getItemDescriptions() { // Getter for descriptions
+    //     return itemDescriptions;
+    // }
 
-    public void setGrabbables(String[] grabbables) { // Setter for grabbable items
-        this.grabbables = grabbables;
-    }
+    // public void setGrabbables(String[] grabbables) { // Setter for grabbable items
+    //     this.grabbables = grabbables;
+    // }
 
-    public String[] getGrabbables() { // Getter for grabbable items
-        return grabbables;
-    }
+    // public String[] getGrabbables() { // Getter for grabbable items
+    //     return grabbables;
+    // }
 
     @Override
     public String toString() { // Custom print for the room
         String result = "\nLocation: " + name; // Show room name
         result += "\nYou See: "; // List items
         for (String item : items) { // Loop items
-            result += item + " "; // Append each item
+            result += item.getName() + " "; // Append each item
         }
         result += "\nExits: "; // List exits
         // for (String direction : exitDirections) { // Loop exits
