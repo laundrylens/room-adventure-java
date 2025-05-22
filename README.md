@@ -19,7 +19,7 @@ A short room-adventure style console game written in Java
 
 ### Will Langley
 
-- File structure: Moved classes to seperate files
+- File structure: Moved classes to separate files
   and used `package` declarations for `include`s,
   improving the organization of code.
 - Directory structure follows reverse domain name standard.
