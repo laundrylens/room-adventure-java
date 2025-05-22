@@ -1,8 +1,8 @@
-import java.util.Scanner;
+import item.Item;
 import java.util.ArrayList;
+import java.util.Scanner;
 import room.HiddenRoom;
 import room.Room;
-import item.Item;
 
 public class RoomAdventure { // Main class containing game logic
 
@@ -235,8 +235,8 @@ public class RoomAdventure { // Main class containing game logic
                 System.out.print(currentRoom.toString()); // Display current room description
                 System.out.print("Inventory: "); // Prompt for inventory display
 
-                for (int i = 0; i < inventory.length; i++) { // Loop through inventory slots
-                    System.out.print(inventory[i] + " "); // Print each inventory item
+                for (int i = 0; i < inventory.size(); i++) { // Loop through inventory slots
+                    System.out.print(inventory.get(i).getName() + " "); // Print each inventory item
                 }
 
                 System.out.println("\nWhat would you like to do? "); // Prompt user for next action
