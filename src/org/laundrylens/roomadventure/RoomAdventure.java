@@ -15,8 +15,8 @@ public class RoomAdventure { // Main class containing game logic
     // constants
     final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'."; // Default
 
-    private void win(){
-
+    private static void win(){
+        won = true;
     }
 
     private static void handleGo(String noun) { // Handles moving between rooms
@@ -129,7 +129,7 @@ public class RoomAdventure { // Main class containing game logic
                     break;
                 case "knife":
                     status = "You committed Seppuku!";
-                    // win
+                    win();
                     break;
                 default:
                     status = "You can't use that item. here...";
