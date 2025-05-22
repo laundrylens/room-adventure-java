@@ -1,5 +1,6 @@
 import item.Item;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import room.HiddenRoom;
 import room.Room;
@@ -136,6 +137,14 @@ public class RoomAdventure { // Main class containing game logic
                     System.out.println("You committed Seppuku!");
                     secretWin();
                     break;
+                case "kendama":
+                    Random rand = new Random();
+                    if (rand.nextInt(10) == 9){
+                        System.out.println("You try to perform a trick on it, and succeed!!");
+                        win();
+                    } else {
+                        System.out.println("You try to perform a trick on it, but you fail. Better luck next time, perhaps.");
+                    }
                 default:
                     status = "You can't use that item. here...";
                     break;
@@ -169,7 +178,7 @@ public class RoomAdventure { // Main class containing game logic
         Item mirror = new Item("mirror", "A mirror. You look at yourself and wonder how you got here.");
         Item mistletoe = new Item("mistletoe","A mistletoe is hanging from the ceiling. You stand under it and hope for a kiss; you remain sad and lonely.");
         Item trophy = new Item("trophy", "A faded gold statue, is this an Oscar? The plaque is missing", true);
-        Item kendama = new Item("kendama","A traditional Japanese kendama toy, made from wood. You pick it up and try to perform a trick on it, but you fail. Better luck next time, perhaps.");
+        Item kendama = new Item("kendama","A traditional Japanese kendama toy, made from wood.", true);
         Item book = new Item("book", "A book. You pick it up and open it, eager to gain knowledge; you then remember you don't know how to read.");
 
         
