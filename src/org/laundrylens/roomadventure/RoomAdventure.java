@@ -152,7 +152,7 @@ public class RoomAdventure { // Main class containing game logic
         Item frog = new Item("frog", "Noisy.");
         Item key = new Item("key", "This might come in handy", true);
         Item hand = new Item("hand", "Yes.");
-        Item pokeball = new Item("pokeball", "Is there something I could catch with this?");
+        Item pokeball = new Item("pokeball", "Is there something I could catch with this?", true);
         Item knife = new Item("knife", "Looks sharp.", true);
 
         //Create Items for secret Rooms
