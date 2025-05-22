@@ -126,7 +126,7 @@ public class RoomAdventure { // Main class containing game logic
         String[] room1Items = {"chair", "table"}; // Items in Room 1
         String[] room1ItemDescriptions = { // Descriptions for Room 1 items
             "It is a chair",
-            "It's a desk, there is a key on it."
+            "If only there was something I could place on top"
         };
         String[] room1Grabbables = {"key"}; // Items you can take in Room 1
         
