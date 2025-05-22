@@ -7,7 +7,7 @@ A short room-adventure style console game written in Java
 
 ## Feature Contributions
 
-### Jesse Llewellyn
+### Jesse Llewellyn (jcllewellyn)
 
 - `handleUse()`: Allows for usage of select items
 - Made `Inventory` an `ArrayList`: Allows the inventory to function more like
@@ -17,7 +17,7 @@ A short room-adventure style console game written in Java
 - Fixed `Room` Class: Integrated `Item` Class, and fixed `toString` to be
   compatible w/ pokeballRoom
 
-### Will Langley
+### Will Langley (luaemu or "keda@tanuki.codes")
 
 - File structure: Moved classes to separate files
   and used `package` declarations for `include`s,
