@@ -1,13 +1,14 @@
-import item.Item;
 import java.util.Scanner;
+import java.util.ArrayList;
 import room.HiddenRoom;
 import room.Room;
+import item.Item;
 
 public class RoomAdventure { // Main class containing game logic
 
     // class variables
     private static Room currentRoom; // The room the player is currently in
-    private static Item[] inventory = { null, null, null, null, null }; // Player inventory slots
+    private static ArrayList<Item> inventory = new ArrayList<>(); // Player inventory slots
     private static String status; // Message to display after each action
 
     // constants
@@ -37,18 +38,20 @@ public class RoomAdventure { // Main class containing game logic
     }
 
     private static void handleTake(String noun) { // Handles picking up items
-        String[] grabbables = currentRoom.getGrabbables(); // Items that can be taken
+        Item[] items = currentRoom.getItems(); // Items that can be taken
+        ArrayList<Item> grabbables = new ArrayList<>();
+        for (int i = 0; i < items.length;i++) {
+            if (items[i].isGrabbable() == true) grabbables.add(items[i]);
+        }
         status = "I can't grab that."; // Default if not grabbable
-        for (String item : grabbables) { // Loop through grabbable items
-            if (noun.equals(item)) { // If user-noun matches grabbable
-                for (int j = 0; j < inventory.length; j++) { // Find empty inventory slot
-                    if (inventory[j] == null) { // If slot is empty
-                        inventory[j] = noun; // Add item to inventory
-                        status = "Added it to the inventory"; // Update status
-                        break; // Exit inventory loop
-                    }
-                }
+        for (Item item : grabbables) { // Loop through grabbable items
+            if (noun.equals(item.getName())) { // If user-noun matches grabbable
+                inventory.add(item);
+                currentRoom.removeItem(item);
+                status = "Added it to the inventory"; // Update status
+                break; // Exit inventory loop
             }
+            
         }
     }
 

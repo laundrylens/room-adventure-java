@@ -52,6 +52,16 @@ public class Room { // Represents a game room
     // public String[] getGrabbables() { // Getter for grabbable items
     //     return grabbables;
     // }
+    public void removeItem(Item item){
+        Item[] newItems = new Item[items.length - 1];
+        int newItemIndex = 0;
+        for (int i = 0; i<items.length;i++){ // loop through items to find item to remove
+            if (this.items[i] != item){
+                newItems[newItemIndex++] = this.items[i]; // add to new array if not the item to remove
+            }
+        }
+        this.items = newItems; // correct array
+    }
 
     @Override
     public String toString() { // Custom print for the room
