@@ -1,4 +1,4 @@
-package org.laundrylens.roomadventure.room;
+package room;
 
 public class Room { // Represents a game room
     private String name; // Room name
@@ -60,9 +60,24 @@ public class Room { // Represents a game room
             result += item + " "; // Append each item
         }
         result += "\nExits: "; // List exits
-        for (String direction : exitDirections) { // Loop exits
-            result += direction + " "; // Append each direction
+        // for (String direction : exitDirections) { // Loop exits
+        // result += direction + " "; // Append each direction
+        // }
+        for (int i = 0; i < exitDestinations.length; i++) {
+            if (exitDestinations[i].getClass() == HiddenRoom.class) {
+                HiddenRoom hr = (HiddenRoom) exitDestinations[i];
+                if (hr.isVisible())
+                    result += exitDirections[i] + "* ";
+                else
+                    continue;
+            } else {
+                result += exitDirections[i] + " ";
+            }
         }
         return result + "\n"; // Return full description
+    }
+
+    public String getName() {
+        return name;
     }
 }
