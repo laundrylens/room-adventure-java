@@ -27,12 +27,11 @@ public class RoomAdventure { // Main class containing game logic
     }
 
     private static void handleLook(String noun) { // Handles inspecting items
-        String[] items = currentRoom.getItems(); // Visible items in current room
-        String[] itemDescriptions = currentRoom.getItemDescriptions(); // Descriptions for each item
+        Item[] items = currentRoom.getItems(); // Visible items in current room
         status = "I don't see that item."; // Default if item not found
         for (int i = 0; i < items.length; i++) { // Loop through items
-            if (noun.equals(items[i])) { // If user-noun matches an item
-                status = itemDescriptions[i]; // Set status to item description
+            if (noun.equals(items[i].getName())) { // If user-noun matches an item
+                status = items[i].getDescription(); // Set status to item description
             }
         }
     }
