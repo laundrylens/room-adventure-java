@@ -95,9 +95,9 @@ public class Room { // Represents a game room
                     result += exitDirections[i] + " ";
                 }
             }
-        return result + "\n"; // Return full description
+            return result + "\n"; // Return full description
         } else {
-            return "None";
+            return result + "None\n";
         }
     }
 
