@@ -10,9 +10,14 @@ public class RoomAdventure { // Main class containing game logic
     private static Room currentRoom; // The room the player is currently in
     private static ArrayList<Item> inventory = new ArrayList<>(); // Player inventory slots
     private static String status; // Message to display after each action
+    private static boolean won = false;
 
     // constants
     final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'."; // Default
+
+    private void win(){
+
+    }
 
     private static void handleGo(String noun) { // Handles moving between rooms
         String[] exitDirections = currentRoom.getExitDirections(); // Get available directions
@@ -236,6 +241,12 @@ public class RoomAdventure { // Main class containing game logic
             while (true) { // Game loop, runs until program is terminated
                 System.out.print(currentRoom.toString()); // Display current room description
                 System.out.print("Inventory: "); // Prompt for inventory display
+
+                if (won){
+                    System.out.println("You found the only way to win! Death by your own hands!");
+                    break;
+                }
+                
 
                 for (int i = 0; i < inventory.size(); i++) { // Loop through inventory slots
                     System.out.print(inventory.get(i).getName() + " "); // Print each inventory item
