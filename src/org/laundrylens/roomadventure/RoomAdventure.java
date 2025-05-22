@@ -59,8 +59,8 @@ public class RoomAdventure { // Main class containing game logic
         status = "You don't have that item in your inventory.";
         byte i = -1; // index of item, if found
         boolean found = false;
-        for (byte j = 0; j < inventory.length; j++) {
-            if (inventory[j] != null && inventory[j].getName().equals(noun)) {
+        for (byte j = 0; j < inventory.size(); j++) {
+            if (inventory.get(j).getName().equals(noun)) {
                 i = j;
                 found = true;
                 break;
@@ -72,9 +72,9 @@ public class RoomAdventure { // Main class containing game logic
                 case "key": // use Key
                     // reveal secret room 1
                     for (Room exitDestination : currentRoom.getExitDestinations()) {
-                        if (exitDestination.getName() == "Hidden Room 1") {
+                        if (exitDestination.getName().equals("Hidden Room 1")) {
                             status = "Something changed!";
-                            inventory[i] = null;
+                            inventory.remove(i);
                             ((HiddenRoom) exitDestination).setVisible(true);
                         } else {
                             status = "Nothing happened...";
@@ -84,14 +84,14 @@ public class RoomAdventure { // Main class containing game logic
                     break;
                 case "trophy": // use Trophy, requires a room with a table
                     boolean foundDesk = false;
-                    for (String item : currentRoom.getItems()) { // Check that theres a table in the room
-                        if (item.equals("Table")) {
+                    for (Item item : currentRoom.getItems()) { // Check that theres a table in the room
+                        if (item.getName().equals("table")) {
                             foundDesk = true;
                         }
                     }
                     if (foundDesk) {
                         // remove the item from player's inventory after use
-                        inventory[i] = null;
+                        inventory.remove(i);
                         status = "Something changed!";
                         // create secret room 2
                         // HACK: workaroud. loop through the exits of the room until we find a
@@ -105,18 +105,19 @@ public class RoomAdventure { // Main class containing game logic
                     break;
                 case "pokeball": // use Pokeball
                     boolean foundMirror = false;
-                    for (String item : currentRoom.getItems()) { //
-                        if (item.equals("mirror")) {
+                    for (Item item : currentRoom.getItems()) { //
+                        if (item.getName().equals("mirror")) {
                             foundMirror = true;
                         }
                     }
                     if (foundMirror) { // mirror, secret ending
                         status = "You threw the pokeball at the mirror and caught yourself!";
-                        inventory[i] = null;
+                        inventory.remove(i);
                         // secret ending
                     } else { // no mirror, add pokeball to room grabbables
-                        inventory[i] = null;
                         status = "You threw the pokeball at nothing!";
+                        currentRoom.addItem(inventory.get(i));
+                        inventory.remove(i);
                     }
 
                     break;

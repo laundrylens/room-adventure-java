@@ -63,11 +63,20 @@ public class Room { // Represents a game room
         this.items = newItems; // correct array
     }
 
+    public void addItem(Item item){
+        Item[] newItems = new Item[items.length + 1];
+        int newItemIndex = 0;
+        for (int i = 0; i<newItems.length;i++){ // loop through items to find item to remove
+            newItems[newItemIndex++] = this.items[i]; // add to new array if not the item to remove
+        }
+        this.items = newItems; // correct array
+    }
+
     @Override
     public String toString() { // Custom print for the room
         String result = "\nLocation: " + name; // Show room name
         result += "\nYou See: "; // List items
-        for (String item : items) { // Loop items
+        for (Item item : items) { // Loop items
             result += item.getName() + " "; // Append each item
         }
         result += "\nExits: "; // List exits
