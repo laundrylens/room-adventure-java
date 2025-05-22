@@ -192,7 +192,7 @@ public class RoomAdventure { // Main class containing game logic
     
 
         // Exits for secret room #2
-        String[] secretRoom2ExitDirections = { "north" };
+        String[] secretRoom2ExitDirections = { "west" };
         Room[] secretRoom2ExitDestinations = { room2 };
 
         secretRoom2.setExitDirections(secretRoom2ExitDirections);
@@ -205,14 +205,14 @@ public class RoomAdventure { // Main class containing game logic
 
         String[] room1ExitDirections = { "east", "south" }; // Room 1 exits
         Room[] room1ExitDestinations = { room2, room3 }; // Destination rooms for Room 1
-        Item[] room1Items = { chair, table }; // Items in Room 1
+        Item[] room1Items = { chair }; // Items in Room 1
 
         room1.setExitDirections(room1ExitDirections); // Set exits
         room1.setExitDestinations(room1ExitDestinations); // Set exit destinations
         room1.setItems(room1Items); // Set visible items
 
-        String[] room2ExitDirections = { "west", "south" }; // Room 2 exits
-        Room[] room2ExitDestinations = { room1, room4 }; // Destination rooms for Room 2
+        String[] room2ExitDirections = { "west", "south", "east" }; // Room 2 exits
+        Room[] room2ExitDestinations = { room1, room4, secretRoom2 }; // Destination rooms for Room 2
         Item[] room2Items = { lamp, bed, table };
 
         room2.setExitDirections(room2ExitDirections); // Set exits
