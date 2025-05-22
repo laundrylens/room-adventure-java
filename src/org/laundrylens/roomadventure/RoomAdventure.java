@@ -1,5 +1,5 @@
+import item.Item;
 import java.util.Scanner;
-
 import room.HiddenRoom;
 import room.Room;
 
@@ -134,6 +134,17 @@ public class RoomAdventure { // Main class containing game logic
         Room room2 = new Room("Room 2"); // Create Room 2
         Room room3 = new Room("Room 3");
         Room room4 = new Room("Room 4");
+
+        //Create Items
+        Item chair = new Item("Chair", "It is a chair");
+        Item table = new Item("Table","If only there was something I could place on top");
+        Item lamp = new Item("Lamp", "Doesn't that look a little flat?");
+        Item bed = new Item("Bed", "Looks comfy. No time to rest.");
+        Item pizza = new Item("pizza-slice", "Rotten.");
+        Item frog = new Item("Frog", "Noisy.");
+        Item key = new Item("key", "This might come in handy", true);
+        Item hand = new Item("hand", "Yes.");
+        Item pokeball = new Item("pokeball", "Is there something I could catch with this?");
 
         HiddenRoom secretRoom1 = new HiddenRoom("Hidden Room 1");
         HiddenRoom secretRoom2 = new HiddenRoom("Hidden Room 2");
