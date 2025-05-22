@@ -15,7 +15,13 @@ public class RoomAdventure { // Main class containing game logic
     // constants
     final private static String DEFAULT_STATUS = "Sorry, I do not understand. Try [verb] [noun]. Valid verbs include 'go', 'look', and 'take'."; // Default
 
-    private static void win(){
+    private static void secretWin(){
+        status = "Secret Ending! Death by your own hands!";
+        won = true;
+    }
+
+    private static void win() {
+        status = "You won! Aren't you satisfied?";
         won = true;
     }
 
@@ -85,7 +91,6 @@ public class RoomAdventure { // Main class containing game logic
                             status = "Nothing happened...";
                         }
                     }
-                    // remove the item from player's inventory after use
                     break;
                 case "trophy": // use Trophy, requires a room with a table
                     boolean foundDesk = false;
@@ -127,9 +132,9 @@ public class RoomAdventure { // Main class containing game logic
                     }
 
                     break;
-                case "knife":
-                    status = "You committed Seppuku!";
-                    win();
+                case "knife": // secret win condition, knife is only in pokeball room
+                    System.out.println("You committed Seppuku!");
+                    secretWin();
                     break;
                 default:
                     status = "You can't use that item. here...";
@@ -158,11 +163,12 @@ public class RoomAdventure { // Main class containing game logic
         Item key = new Item("key", "This might come in handy", true);
         Item hand = new Item("hand", "Yes.");
         Item pokeball = new Item("pokeball", "Is there something I could catch with this?", true);
-        Item knife = new Item("knife", "Looks sharp.", true);
 
         //Create Items for secret Rooms
+        Item knife = new Item("knife", "Looks sharp.", true);
         Item mirror = new Item("mirror", "A mirror. You look at yourself and wonder how you got here.");
         Item mistletoe = new Item("mistletoe","A mistletoe is hanging from the ceiling. You stand under it and hope for a kiss; you remain sad and lonely.");
+        Item trophy = new Item("trophy", "A faded gold statue, is this an Oscar? The plaque is missing", true);
         Item kendama = new Item("kendama","A traditional Japanese kendama toy, made from wood. You pick it up and try to perform a trick on it, but you fail. Better luck next time, perhaps.");
         Item book = new Item("book", "A book. You pick it up and open it, eager to gain knowledge; you then remember you don't know how to read.");
 
@@ -180,7 +186,7 @@ public class RoomAdventure { // Main class containing game logic
         secretRoom1.setExitDestinations(secretRoom1ExitDestinations);
 
         // Items for secret room #1
-        Item[] secretRoom1Items = { mirror, mistletoe };
+        Item[] secretRoom1Items = { mirror, mistletoe, trophy};
 
         secretRoom1.setItems(secretRoom1Items);
     
@@ -243,7 +249,7 @@ public class RoomAdventure { // Main class containing game logic
                 System.out.print("Inventory: "); // Prompt for inventory display
 
                 if (won){
-                    System.out.println("You found the only way to win! Death by your own hands!");
+                    System.out.println(status);
                     break;
                 }
                 
