@@ -83,18 +83,22 @@ public class Room { // Represents a game room
         // for (String direction : exitDirections) { // Loop exits
         // result += direction + " "; // Append each direction
         // }
-        for (int i = 0; i < exitDestinations.length; i++) {
-            if (exitDestinations[i].getClass() == HiddenRoom.class) {
-                HiddenRoom hr = (HiddenRoom) exitDestinations[i];
-                if (hr.isVisible())
-                    result += exitDirections[i] + "* ";
-                else
-                    continue;
-            } else {
-                result += exitDirections[i] + " ";
+        if (exitDestinations != null){
+            for (int i = 0; i < exitDestinations.length; i++) {
+                if (exitDestinations[i].getClass() == HiddenRoom.class) {
+                    HiddenRoom hr = (HiddenRoom) exitDestinations[i];
+                    if (hr.isVisible())
+                        result += exitDirections[i] + "* ";
+                    else
+                        continue;
+                } else {
+                    result += exitDirections[i] + " ";
+                }
             }
-        }
         return result + "\n"; // Return full description
+        } else {
+            return "None";
+        }
     }
 
     public String getName() {

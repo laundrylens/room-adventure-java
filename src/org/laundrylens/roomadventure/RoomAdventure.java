@@ -164,7 +164,9 @@ public class RoomAdventure { // Main class containing game logic
         
         // Items for pokeball room, no exits
         Item[] pokeballRoomItems = {knife};
+        String[] pokeballRoomExitDirections = {"none"};
         pokeballRoom.setItems(pokeballRoomItems);
+        pokeballRoom.setExitDirections(pokeballRoomExitDirections);
 
         // Exits for secret room #1
         String[] secretRoom1ExitDirections = { "north", "south" };
