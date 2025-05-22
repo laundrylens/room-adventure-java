@@ -132,22 +132,30 @@ public class RoomAdventure { // Main class containing game logic
     private static void setupGame() { // Initializes game world
         Room room1 = new Room("Room 1"); // Create Room 1
         Room room2 = new Room("Room 2"); // Create Room 2
-        Room room3 = new Room("Room 3");
-        Room room4 = new Room("Room 4");
+        Room room3 = new Room("Room 3"); // Create Room 3
+        Room room4 = new Room("Room 4"); // Create Room 4
 
-        //Create Items
-        Item chair = new Item("Chair", "It is a chair");
-        Item table = new Item("Table","If only there was something I could place on top");
-        Item lamp = new Item("Lamp", "Doesn't that look a little flat?");
-        Item bed = new Item("Bed", "Looks comfy. No time to rest.");
+        HiddenRoom secretRoom1 = new HiddenRoom("Hidden Room 1"); // Create Secret Room 1
+        HiddenRoom secretRoom2 = new HiddenRoom("Hidden Room 2"); // Create Secret Room 2
+
+        //Create Items for Rooms 1 - 4
+        Item chair = new Item("chair", "It is a chair");
+        Item table = new Item("table","If only there was something I could place on top");
+        Item lamp = new Item("lamp", "Doesn't that look a little flat?");
+        Item bed = new Item("bed", "Looks comfy. No time to rest.");
         Item pizza = new Item("pizza-slice", "Rotten.");
-        Item frog = new Item("Frog", "Noisy.");
+        Item frog = new Item("frog", "Noisy.");
         Item key = new Item("key", "This might come in handy", true);
         Item hand = new Item("hand", "Yes.");
         Item pokeball = new Item("pokeball", "Is there something I could catch with this?");
 
-        HiddenRoom secretRoom1 = new HiddenRoom("Hidden Room 1");
-        HiddenRoom secretRoom2 = new HiddenRoom("Hidden Room 2");
+        //Create Items for secret Rooms
+        Item mirror = new Item("mirror", "A mirror. You look at yourself and wonder how you got here.");
+        Item mistletoe = new Item("mistletoe","A mistletoe is hanging from the ceiling. You stand under it and hope for a kiss; you remain sad and lonely.");
+        Item kendama = new Item("kendama","A traditional Japanese kendama toy, made from wood. You pick it up and try to perform a trick on it, but you fail. Better luck next time, perhaps.");
+        Item book = new Item("book", "A book. You pick it up and open it, eager to gain knowledge; you then remember you don't know how to read.");
+
+        
 
         // Exits for secret room #1
         String[] secretRoom1ExitDirections = { "north" };
@@ -156,17 +164,10 @@ public class RoomAdventure { // Main class containing game logic
         secretRoom1.setExitDestinations(secretRoom1ExitDestinations);
 
         // Items for secret room #1
-        String[] secretRoom1Items = { "mirror", "mistletoe" };
-        String[] secretRoom1ItemDescriptions = {
-                "A mirror. You look at yourself and wonder how you got here.",
-                "A mistletoe is hanging from the ceiling. You stand under it and hope for a kiss; you remain sad and lonely.",
-        };
-
-        String[] secretRoom1Grabbables = {};
+        Item[] secretRoom1Items = { mirror, mistletoe };
 
         secretRoom1.setItems(secretRoom1Items);
-        secretRoom1.setItemDescriptions(secretRoom1ItemDescriptions);
-        secretRoom1.setGrabbables(secretRoom1Grabbables);
+    
 
         // Exits for secret room #2
         String[] secretRoom2ExitDirections = { "north" };
@@ -176,17 +177,9 @@ public class RoomAdventure { // Main class containing game logic
         secretRoom2.setExitDestinations(secretRoom2ExitDestinations);
 
         // Items for secret room #2
-        String[] secretRoom2Items = { "kendama", "book" };
-        String[] secretRoom2ItemDescriptions = {
-                "A traditional Japanese kendama toy, made from wood. You pick it up and try to perform a trick on it, but you fail. Better luck next time, perhaps.",
-                "A book. You pick it up and open it, eager to gain knowledge; you then remember you don't know how to read."
-        };
-
-        String[] secretRoom2Grabbables = {};
+        Item[] secretRoom2Items = { kendama, book };
 
         secretRoom2.setItems(secretRoom2Items);
-        secretRoom2.setItemDescriptions(secretRoom2ItemDescriptions);
-        secretRoom2.setGrabbables(secretRoom2Grabbables);
 
         String[] room1ExitDirections = { "east", "south" }; // Room 1 exits
         Room[] room1ExitDestinations = { room2, room3 }; // Destination rooms for Room 1
