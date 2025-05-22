@@ -114,6 +114,7 @@ public class RoomAdventure { // Main class containing game logic
                         status = "You threw the pokeball at the mirror and caught yourself!";
                         inventory.remove(i);
                         // secret ending
+                        handleGo("south");
                     } else { // no mirror, add pokeball to room grabbables
                         status = "You threw the pokeball at nothing!";
                         currentRoom.addItem(inventory.get(i));
@@ -140,6 +141,7 @@ public class RoomAdventure { // Main class containing game logic
 
         HiddenRoom secretRoom1 = new HiddenRoom("Hidden Room 1"); // Create Secret Room 1
         HiddenRoom secretRoom2 = new HiddenRoom("Hidden Room 2"); // Create Secret Room 2
+        HiddenRoom pokeballRoom = new HiddenRoom("Pokeball");
 
         //Create Items for Rooms 1 - 4
         Item chair = new Item("chair", "It is a chair");
@@ -151,6 +153,7 @@ public class RoomAdventure { // Main class containing game logic
         Item key = new Item("key", "This might come in handy", true);
         Item hand = new Item("hand", "Yes.");
         Item pokeball = new Item("pokeball", "Is there something I could catch with this?");
+        Item knife = new Item("knife", "Looks sharp.", true);
 
         //Create Items for secret Rooms
         Item mirror = new Item("mirror", "A mirror. You look at yourself and wonder how you got here.");
@@ -159,10 +162,13 @@ public class RoomAdventure { // Main class containing game logic
         Item book = new Item("book", "A book. You pick it up and open it, eager to gain knowledge; you then remember you don't know how to read.");
 
         
+        // Items for pokeball room, no exits
+        Item[] pokeballRoomItems = {knife};
+        pokeballRoom.setItems(pokeballRoomItems);
 
         // Exits for secret room #1
-        String[] secretRoom1ExitDirections = { "north" };
-        Room[] secretRoom1ExitDestinations = { room3 };
+        String[] secretRoom1ExitDirections = { "north", "south" };
+        Room[] secretRoom1ExitDestinations = { room3 , pokeballRoom};
         secretRoom1.setExitDirections(secretRoom1ExitDirections);
         secretRoom1.setExitDestinations(secretRoom1ExitDestinations);
 
